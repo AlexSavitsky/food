@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
       minutes = 0;
       seconds = 0;
     } else {
-      (days = Math.floor(t / (1000 * 60 * 60 * 24))),
-        (hours = Math.floor((t / (1000 * 60 * 60)) % 24)),
-        (minutes = Math.floor((t / 1000 / 60) % 60)),
-        (seconds = Math.floor((t / 1000) % 60));
+      days = Math.floor(t / (1000 * 60 * 60 * 24));
+      hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+      minutes = Math.floor((t / 1000 / 60) % 60);
+      seconds = Math.floor((t / 1000) % 60);
     }
     return {
       total: t,
@@ -106,29 +106,29 @@ document.addEventListener("DOMContentLoaded", () => {
     modalWindow = document.querySelector(".modal"),
     modalCloseBtn = document.querySelector("[data-close]");
 
-    modalBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-          modalWindow.classList.toggle('show');
-          document.body.style.overflow = 'hidden';
-      });
-    });
-
-    modalCloseBtn.addEventListener("click", closeModal); 
-
-    modalWindow.addEventListener("click", (e) => {
-      if(e.target === modalWindow){
-        closeModal();
-      }
-    });
-
-    function closeModal (){
+  modalBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
       modalWindow.classList.toggle("show");
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if(e.code === "Escape" && modalWindow.classList.contains('show')){
-          closeModal();
-        }
+      document.body.style.overflow = "hidden";
     });
+  });
+
+  modalCloseBtn.addEventListener("click", closeModal);
+
+  modalWindow.addEventListener("click", (e) => {
+    if (e.target === modalWindow) {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    modalWindow.classList.toggle("show");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape" && modalWindow.classList.contains("show")) {
+      closeModal();
+    }
+  });
 });
